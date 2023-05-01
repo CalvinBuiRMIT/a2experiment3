@@ -1,0 +1,18 @@
+/*
+      this file contains some CSS that removes the default HTML feedback of the elements you need to work on - please
+      leave this import as it is and don't change anything in the CSS file called feedbackReset.css
+*/
+
+nav ol li a {
+  color: var(--col-01);
+  text-decoration: none;
+  cursor: default;
+}
+
+#mode-button{
+  background-color: transparent;
+  border: 0;
+  color: var(--col-01);
+  text-decoration: none;
+  cursor: default;
+}

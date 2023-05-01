@@ -1,0 +1,293 @@
+/*
+  This one CSS file is imported into both index.html AND hosono.html so you need to be careful that it 
+  works for both.
+*/
+
+*{
+  box-sizing: border-box;
+  background-origin: border-box;
+  margin: 0;
+}
+
+:root{
+  /* first two colours come from Kuroi's Manga Pallete Palette */
+  /* https://lospec.com/palette-list/manga-pallete */
+  --col-01:#171219;
+  --col-02:#f2fbeb;
+  --col-03:#5252ff;
+  --col-04:#b6e878;
+  font-size: 16px;
+  /* scroll behaviour makes the <a> links to ids scroll to position over time rather than immediately */
+  scroll-behavior: smooth;
+}
+
+body{
+  padding: 1rem;
+  background-color: var(--col-02);
+  color: var(--col-01);
+  transition: 1s;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav li{
+  font-size: 1rem;
+}
+
+section{
+  margin-bottom: 2rem;
+}
+
+h1{
+  font-size: 3rem;
+}
+
+h2{
+  font-size: 2rem;
+}
+
+p{
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+figcaption{
+  width: fit-content;
+}
+
+dl ul{
+  margin-bottom: 0;
+}
+
+li{
+  font-size: 1rem;
+}
+
+dd{
+  padding-left: 60px;
+}
+
+li ul{
+  padding-left: 40px;
+}
+
+.img-wrapper{
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.img-figure{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article-img{
+  width: 80%;
+}
+
+.res-columns{
+  column-width: 25rem;
+}
+
+#mode-button{
+  float: right;
+  /* note the use of position: sticky to keep the button on the page even with scrolling */
+  position: sticky;
+  top: 1rem;
+}
+
+/* code for loading page */
+
+#load-body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* changing button to look like a link */
+#load-link{
+  line-height: 1rem;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+/* throbber while page is fake loading */
+#load-throbber{
+  /* the width, height and background-color give it a shape on the page without any content inside - 
+  these value are arbitrary, Please change to create your own design  */
+  width: 25%;
+  height: 1rem;
+  background-color: var(--col-03);
+  /* we also initially set display to none so it only shows once the link is clicked */
+  display: none;
+}
+
+/* Media Queries */
+
+/* medium devices 600 - 992 */
+@media only screen and (min-width: 600px) {
+  :root{
+    font-size: 20px;
+  }
+  
+  .img-wrapper{
+    width: 75%;
+    margin: 1.5rem auto;
+  }
+
+}
+
+/* medium devices 992 + */
+@media only screen and (min-width: 992px) {
+  :root{
+    font-size: 24px;
+  }
+
+  .img-wrapper{
+    max-width: fit-content;
+    float: right;
+    margin: 1.5rem;
+  }
+
+}
+
+@media (prefers-reduced-motion) {
+  :root{
+    scroll-behavior: auto;
+  }
+}
+
+
+/*Interactions*/
+
+/*Here I added base styles */
+#load-link, #mode-button{
+  border: 1px solid transparent;
+  transition: all 200ms ease-in-out;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+/* Adding a border on the hover of the elements. I also set the cursor to "pointer" icon above. 
+This makes it feel like a clickable element. */
+
+/* The hover and active interactions enhance the user experience on the 
+website by providing visual feedback to the user. 
+These interactions help users understand that the element is interactive and can be clicked or interacted with, 
+improving the overall usability of the website. */
+
+/* The hover interaction adds a border and slight letter-spacing to the element, creating a subtle yet noticeable change in appearance. 
+This change indicates that the element is interactive, and when combined with the hand cursor, 
+it gives users the impression that the element is clickable, improving discoverability. */
+
+#load-link:hover, #mode-button:hover{
+  border: 1px solid black;
+  border-radius: 0;
+}
+#load-link:active, #mode-button:active{
+  border: 1px solid black;
+  border-radius: 0;
+}
+
+
+
+#load-throbber.loading { /* I have set the base styles for the loading bar*/
+  position: relative;
+  height: 1rem;
+  background-color: #ccc;
+  overflow: hidden;
+}
+
+
+/* Adding the loading bar animation. It loads up based on the given loading time of the page.
+The loading up action creates the waiting experience for users. They will want the bar to finish loading up to reveal the webpage */
+
+#load-throbber.loading::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #007aff;
+  animation: loading-bar 10s linear;
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+/* The following styles are applied to the navigation list items and their child anchor elements. 
+These styles aim to enhance the user experience by providing visual feedback and interactivity when hovering over the navigation items. */
+
+
+/* The 'cursor: pointer' property is set for both the list items and their child anchor elements. 
+This change in cursor indicates that the elements are interactive and clickable, improving 
+the discoverability of the navigation links. */
+
+nav > ol > li a{
+  cursor: pointer;
+  position: relative;
+  transition: all 300ms ease-in-out;
+}
+/* The 'position: relative' property is applied to the anchor elements to establish a 
+new positioning context, allowing the pseudo-element (::before) to be positioned 
+relative to the anchor elements. */
+
+
+/* The 'transition: all 300ms ease-in-out' property is applied to both the list 
+items and anchor elements to create smooth animations when interacting with the elements.
+ This subtle animation effect provides a more polished and engaging user experience. */
+
+nav > ol > li{
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+/* The 'nav > ol > li:hover a::before' selector targets the ::before pseudo-element of the anchor elements when the parent list item is hovered. 
+
+A small circle with a black background and white border is created using the 'content' 
+property and other various styling properties, like 'height', 'width', 'background-color', 'border', and 'border-radius'. 
+This circle is positioned using the 'right', 'top', and 'position' properties, 
+creating a visual cue for users when hovering over the navigation items. */
+
+/* The 'nav > ol > li:hover a' selector applies a 'letter-spacing' property to the anchor 
+elements when the parent list item is hovered. This subtle change in letter-spacing 
+further emphasizes interactivity and enhances the user experience. */
+
+
+nav > ol > li:hover a::before {
+  content: "";
+  height: 6px;
+  width: 6px;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: inline-block;
+  right: -16px;
+  position: absolute;
+  top: 9px;
+}
+nav > ol > li:hover a {
+  letter-spacing: 1px;
+}
+
+/* By combining these styles, the navigation becomes more engaging, interactive, 
+and user-friendly, ultimately contributing to a better user experience and improved website usability. */
+
+
+
+
+
+
